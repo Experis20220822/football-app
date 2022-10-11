@@ -1,5 +1,5 @@
 package models
 
-case class Team(name: String, stadium: Stadium) {
+case class Team(id: Long, name: String, stadium: Stadium) {
 
 }

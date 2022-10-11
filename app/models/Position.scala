@@ -1,6 +1,6 @@
 package models
 
-trait Position {
+sealed trait Position {
 
 
 }

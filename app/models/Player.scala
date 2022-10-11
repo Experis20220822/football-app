@@ -1,3 +1,3 @@
 package models
 
-case class Player(team: Team, position: Position)
+case class Player(team: Team, position: Position, id: Long)
