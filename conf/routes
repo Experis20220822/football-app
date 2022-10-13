@@ -15,7 +15,7 @@ GET     /stadium                    controllers.StadiumController.init()
 
 GET     /stadium/:id                controllers.StadiumController.show(id:Long)
 
-POST    /stadium                   controllers.StadiumController.create()
+POST    /stadium                    controllers.StadiumController.create()
 
 GET     /teams                      controllers.TeamController.list()
 

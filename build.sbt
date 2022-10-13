@@ -2,7 +2,7 @@ name := """football_app"""
 organization := "com.jrrtolkien"
 
 version := "1.0-SNAPSHOT"
-
+val testContainersScalaVersion = "0.40.11"
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.13.10"

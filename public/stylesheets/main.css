@@ -13,5 +13,22 @@ h1 {
 }
 
 .nav-container {
-    background: coral;
+    background: #FF875C;
+}
+
+.nav-link, dropdown {
+    color: white; !important
+}
+
+
+.navbar-brand {
+    color: #0056b3;
+}
+
+.navbar-brand:hover {
+    color: #0076F5;
+}
+
+.img-wrap {
+
 }

@@ -3,6 +3,6 @@ import services.{MemoryStadiumService, StadiumService}
 
 class Module extends AbstractModule{
   override def configure(): Unit = {
-    bind(classOf[StadiumService]).to(classOf[MemoryStadiumService])
+    bind(classOf[StadiumService]).to(classOf[MemoryStadiumService]).in(classOf[javax.inject.Singleton])
   }
 }
