@@ -1,20 +1,19 @@
 package controllers
-import models.Team
-import models.Stadium
-
-import javax.inject._
+import models.{Stadium, Team}
 import play.api._
 import play.api.data.Form
-import play.api.data.Forms.{mapping, number, text}
+import play.api.data.Forms.{mapping, text}
+import play.api.data.validation.Constraints.nonEmpty
 import play.api.mvc._
 
+import javax.inject._
 import scala.util.hashing.MurmurHash3
 
 case class TeamData(name: String, stadium: String)
 
 class TeamController @Inject() (
   val controllerComponents: ControllerComponents
-  ) extends BaseController {
+  ) extends BaseController with play.api.i18n.I18nSupport {
   def list() = Action { implicit request =>
     val result = List(
       Team(10L, "Chelsea", Stadium("Stamford Bridge")),
@@ -26,8 +25,8 @@ class TeamController @Inject() (
 
   val teamForm = Form(
     mapping(
-      "name" -> text,
-      "stadium" -> text,
+      "name" -> text.verifying(nonEmpty),
+      "stadium" -> text.verifying(nonEmpty),
     )(TeamData.apply)
     (TeamData.unapply)
   )

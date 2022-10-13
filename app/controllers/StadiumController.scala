@@ -1,35 +1,32 @@
 package controllers
-import models.Stadium
-
-import javax.inject._
 import play.api._
 import play.api.data.Form
 import play.api.data.Forms.{mapping, number, text}
+import play.api.data.validation.Constraints.{max, min, nonEmpty}
 import play.api.mvc._
+import services.StadiumService
 
+import javax.inject._
 import scala.util.hashing.MurmurHash3
 
 case class StadiumData(name: String, city: String, country: String, seats: Int)
 
 class StadiumController @Inject() (
-  val controllerComponents: ControllerComponents
-) extends BaseController {
+  val controllerComponents: ControllerComponents,
+  val stadiumService: StadiumService
+) extends BaseController
+    with play.api.i18n.I18nSupport {
   def list() = Action { implicit request =>
-    val result = List(
-      Stadium(10L, "Stamford Bridge", "A", "B", 1203),
-      Stadium(12L, "Emirates Stadium", "A", "B", 1001),
-      Stadium(13L, "Ashburton Grove", "A", "B", 2000),
-      Stadium(15L, "The Dripping Pan", "A", "B", 4000),
-    )
+    val result = stadiumService.findAll()
     Ok(views.html.stadium.stadiums(result))
   }
 
   val stadiumForm = Form(
     mapping(
-      "name" -> text,
-      "city" -> text,
-      "country" -> text,
-      "seats" -> number
+      "name" -> text.verifying(nonEmpty),
+      "city" -> text.verifying(nonEmpty),
+      "country" -> text.verifying(nonEmpty),
+      "seats" -> number.verifying(min(0), max(100))
     )(StadiumData.apply)
     (StadiumData.unapply)
   )
@@ -48,16 +45,24 @@ class StadiumController @Inject() (
         stadiumData => {
           val id = MurmurHash3.stringHash(stadiumData.name)
           val newUser = models.Stadium(
-            id, stadiumData.name, stadiumData.city, stadiumData.country, stadiumData.seats
+            id,
+            stadiumData.name,
+            stadiumData.city,
+            stadiumData.country,
+            stadiumData.seats
           )
           println("Yay!" + newUser)
+          stadiumService.create(newUser)
           Redirect(routes.StadiumController.show(id))
         }
       )
   }
 
-  def show(id: Long) = Action { implicit request =>
-    Ok("This is a placeholder for this stadium")
+  def show(id: Long): Action[AnyContent] = Action.apply { implicit request =>
+    val maybeStadium = stadiumService.findById(id)
+    maybeStadium
+      .map(s => Ok(views.html.stadium.show(s)))
+      .getOrElse(NotFound("Sorry, that stadium no existo"))
   }
 }
 
