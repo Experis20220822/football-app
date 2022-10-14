@@ -21,9 +21,12 @@ class MemoryPlayerService extends PlayerService {
 
   override def findAll(): List[Player] = mutableList.toList
 
-  override def findByFirstName(firstName: String): List[Player] = ???
+  override def findByFirstName(firstName: String): Option[Player] =
+    mutableList.find(p => p.firstName == firstName)
 
-  override def findByLastName(lastName: String): List[Player] = ???
+  override def findByLastName(lastName: String): Option[Player] =
+    mutableList.find(p => p.lastName == lastName)
 
-  override def findByPosition(position: Position): List[Player] = ???
+
+  override def findByPosition(position: Position): List[Player] = mutableList.filter(p => p.position == position).toList
 }

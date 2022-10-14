@@ -14,9 +14,9 @@ trait PlayerService {
 
   def findAll(): List[Player]
 
-  def findByFirstName(firstName: String): List[Player]
+  def findByFirstName(firstName: String): Option[Player]
 
-  def findByLastName(lastName: String): List[Player]
+  def findByLastName(lastName: String): Option[Player]
 
   def findByPosition(position: Position): List[Player]
 
