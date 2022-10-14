@@ -17,9 +17,20 @@ import scala.concurrent.Future
 import scala.util.Try
 
 class MongoStadiumServices extends AsyncStadiumService {
+  val credential = MongoCredential.createCredential("mongo-root", "admin", "mongo-password".toCharArray)
+
+  import scala.jdk.CollectionConverters._
   val mongoClient: MongoClient = MongoClient(
-    "mongodb://mongo-root:mongo-password@localhost:" + 27017
+    MongoClientSettings
+      .builder()
+      .applyToClusterSettings((builder: ClusterSettings.Builder) =>
+        builder
+          .hosts(List(new ServerAddress("localhost", 27017)).asJava)
+      )
+      .credential(credential)
+      .build()
   )
+
   val myCompanyDatabase = mongoClient.getDatabase("football_app")
   val stadiumCollection = myCompanyDatabase.getCollection("stadiums")
 
@@ -34,7 +45,6 @@ class MongoStadiumServices extends AsyncStadiumService {
       )
   }
 
-  override def update(stadium: Stadium): Future[Try[Stadium]] = ???
 
   override def findById(id: Long): Future[Option[Stadium]] = {
     stadiumCollection
@@ -56,13 +66,23 @@ class MongoStadiumServices extends AsyncStadiumService {
     )
   }
 
+  override def update(stadium: Stadium): Future[Try[Stadium]] = ???
+
   override def findAll(): Future[List[Stadium]] = stadiumCollection
     .find()
     .map(documentToStadium)
     .foldLeft(List.empty[Stadium])((list, stadium) => stadium :: list)
     .head()
 
-
+  private def documentToStadium(d: Document) = {
+    Stadium(
+      d.getLong("_id"),
+      d.getString("name"),
+      d.getString("city"),
+      d.getString("country"),
+      d.getInteger("seats")
+    )
+  }
   override def findByName(name: String): Future[Option[Stadium]] = ???
 
   override def findByCountry(name: String): Future[List[Stadium]] = ???

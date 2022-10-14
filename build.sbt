@@ -7,9 +7,14 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.13.10"
 
-libraryDependencies += guice
-libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
-libraryDependencies += "org.mongodb.scala" %% "mongo-scala-driver" % "4.6.0"
+libraryDependencies ++= Seq(
+  guice,
+  "com.dimafeng" %% "testcontainers-scala-scalatest" % testContainersScalaVersion % "test",
+  "com.dimafeng" %% "testcontainers-scala-mongodb" % testContainersScalaVersion % "test",
+  "org.mongodb.scala" %% "mongo-scala-driver" % "4.6.0",
+  "org.webjars.npm" % "bootstrap" % "5.2.2",
+  "org.scalatestplus.play" %% "scalatestplus-play" % "5.0.0" % Test
+)
 
 
 // Adds additional packages into Twirl
