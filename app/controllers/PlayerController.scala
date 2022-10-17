@@ -46,6 +46,7 @@ class PlayerController @Inject() (
       playersData => {
         val id = MurmurHash3.stringHash(playersData.team)
         val newPlayers = models.Player(
+          id,
           Team(10L, playersData.team, Stadium("House of Jacques")),
           playersData.position match {
             case "GoalKeeper" => GoalKeeper
@@ -61,7 +62,6 @@ class PlayerController @Inject() (
             case "LeftMidfielder" => LeftMidfielder
             case _ => Referee
           },
-          id,
           playersData.firstName,
           playersData.lastName
         )
