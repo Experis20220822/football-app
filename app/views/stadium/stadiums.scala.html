@@ -1,5 +1,6 @@
 @(stadiums: List[Stadium])
 
+@main("Stadiums"){
 <h1>Welcome, there are @stadiums.size stadiums to look at!</h1>
 
 <ul>
@@ -7,3 +8,4 @@
     <li><a href="@routes.StadiumController.show(stadium.id)">@stadium.name</a></li>
     }
 </ul>
+}
