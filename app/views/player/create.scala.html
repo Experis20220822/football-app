@@ -5,7 +5,7 @@
 @helper.form(action = routes.
 PlayerController.create()) {
 @CSRF.formField
-@helper.inputText(playerForm("name"))
+@helper.inputText(playerForm("firstName"))
 @helper.inputText(playerForm("lastName"))
 @helper.inputText(playerForm("team"))
 @helper.inputText(playerForm("position"))

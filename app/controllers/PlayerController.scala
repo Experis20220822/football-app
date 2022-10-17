@@ -25,10 +25,10 @@ class PlayerController @Inject() (
 
   val playerForm = Form(
     mapping(
-      "name" -> text.verifying(nonEmpty),
-      "lastName" -> text.verifying(nonEmpty),
       "team" -> text.verifying(nonEmpty),
-      "position" -> text.verifying(nonEmpty)
+      "position" -> text.verifying(nonEmpty),
+      "firstName" -> text.verifying(nonEmpty),
+      "lastName" -> text.verifying(nonEmpty),
     )(PlayerData.apply)
     (PlayerData.unapply)
   )

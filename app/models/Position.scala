@@ -4,26 +4,60 @@ sealed trait Position {
 
 }
 
-object GoalKeeper extends Position
+case object GoalKeeper extends Position {
+  override def toString: String = "Goalkeeper"
+}
 
-object RightFullback extends Position
+object RightFullback extends Position {
+  override def toString: String = "Right Fullback"
+}
 
-object LeftFullback extends Position
+object LeftFullback extends Position {
+  override def toString: String = "Left Fullback"
 
-object CenterBack extends Position
+}
 
-object Sweeper extends Position
+object CenterBack extends Position {
+  override def toString: String = "Center Back"
 
-object Striker extends Position
+}
 
-object HoldingMidfielder extends Position
+object Sweeper extends Position {
+  override def toString: String = "Sweeper"
 
-object RightMidfielder extends Position
+}
 
-object Central extends Position
+object Striker extends Position {
+  override def toString: String = "Striker"
 
-object AttackingMidfielder extends Position
+}
 
-object LeftMidfielder extends Position
+object HoldingMidfielder extends Position {
+  override def toString: String = "Holding Midfielder"
 
-object Referee extends Position
+}
+
+object RightMidfielder extends Position {
+  override def toString: String = "Right Midfielder"
+
+}
+
+object Central extends Position {
+  override def toString: String = "Central"
+
+}
+
+object AttackingMidfielder extends Position {
+  override def toString: String = "Attacking Midfielder"
+
+}
+
+object LeftMidfielder extends Position {
+  override def toString: String = "Left Midfielder"
+
+}
+
+object Referee extends Position {
+  override def toString: String = "Referee"
+
+}
