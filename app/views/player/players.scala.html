@@ -1,0 +1,9 @@
+@(players: List[Player])
+
+<h1>Welcome, there are @players.size players to have a goosey at!</h1>
+
+<ul>
+    @for(player <- players) {
+    <li><a href="@routes.PlayerController.show(player.id)">@player.name</a></li>
+    }
+</ul>

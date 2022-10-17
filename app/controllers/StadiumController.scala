@@ -1,12 +1,14 @@
 package controllers
+
 import play.api._
 import play.api.data.Form
 import play.api.data.Forms.{mapping, number, text}
 import play.api.data.validation.Constraints.{max, min, nonEmpty}
 import play.api.mvc._
 import services.AsyncStadiumService
-import scala.concurrent.ExecutionContext.Implicits.global
+
 import javax.inject._
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.hashing.MurmurHash3
 
 case class StadiumData(name: String, city: String, country: String, seats: Int)

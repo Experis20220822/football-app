@@ -2,18 +2,10 @@ package services
 
 import models.Stadium
 import org.mongodb.scala.connection.ClusterSettings
-import org.mongodb.scala.{
-  Document,
-  MongoClient,
-  MongoClientSettings,
-  MongoCredential,
-  ServerAddress,
-  SingleObservable
-}
 import org.mongodb.scala.model.Filters.equal
+import org.mongodb.scala.{Document, MongoClient, MongoClientSettings, MongoCredential, ServerAddress}
 
 import scala.concurrent.Future
-
 import scala.util.Try
 
 class MongoStadiumServices extends AsyncStadiumService {
@@ -25,7 +17,7 @@ class MongoStadiumServices extends AsyncStadiumService {
       .builder()
       .applyToClusterSettings((builder: ClusterSettings.Builder) =>
         builder
-          .hosts(List(new ServerAddress("localhost", 27017)).asJava)
+          .hosts(List(new ServerAddress("localhost", 27019)).asJava)
       )
       .credential(credential)
       .build()
