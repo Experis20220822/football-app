@@ -25,3 +25,5 @@ object Central extends Position
 object AttackingMidfielder extends Position
 
 object LeftMidfielder extends Position
+
+object Referee extends Position

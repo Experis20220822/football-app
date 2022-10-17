@@ -47,7 +47,20 @@ class PlayerController @Inject() (
         val id = MurmurHash3.stringHash(playersData.team)
         val newPlayers = models.Player(
           Team(10L, playersData.team, Stadium("House of Jacques")),
-          playersData.position,
+          playersData.position match {
+            case "GoalKeeper" => GoalKeeper
+            case "RightFullback" => RightFullback
+            case "LeftFullback" => LeftFullback
+            case "CenterBack" => CenterBack
+            case "Sweeper" => Sweeper
+            case "Striker" => Striker
+            case "HoldingMidfielder" => HoldingMidfielder
+            case "RightMidfielder" => RightMidfielder
+            case "Central" => Central
+            case "AttackingMidfielder" => AttackingMidfielder
+            case "LeftMidfielder" => LeftMidfielder
+            case _ => Referee
+          },
           id,
           playersData.firstName,
           playersData.lastName
@@ -63,7 +76,7 @@ class PlayerController @Inject() (
   def show(id: Long) = Action { implicit request =>
     val maybePlayers = playerService.findById(id)
     maybePlayers
-      .map(s => Ok(views.html.players.show(s)))
+      .map(s => Ok(views.html.player.show(s)))
       .getOrElse(NotFound("Sorry, that player is not found"))
   }
 }
