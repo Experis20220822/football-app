@@ -38,7 +38,7 @@ class PlayerController @Inject() (
   }
 
   def create() = Action { implicit request =>
-    playerForm.bindFromRequest.fold(
+    playerForm.bindFromRequest().fold(
       formWithErrors => {
         println("Nay!" + formWithErrors)
         BadRequest(views.html.player.create(formWithErrors))

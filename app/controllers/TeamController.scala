@@ -39,7 +39,7 @@ class TeamController @Inject() (
   def create() = Action {
     implicit request =>
       println(request.body)
-      teamForm.bindFromRequest.fold(
+      teamForm.bindFromRequest().fold(
         formWithErrors => {
           println("Nay!" + formWithErrors)
           BadRequest(views.html.team.create(formWithErrors))

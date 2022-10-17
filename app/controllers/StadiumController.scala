@@ -39,7 +39,7 @@ class StadiumController @Inject() (
 
   def create() = Action {
     implicit request =>
-      stadiumForm.bindFromRequest.fold(
+      stadiumForm.bindFromRequest().fold(
         formWithErrors => {
           println("Nay!" + formWithErrors)
           BadRequest(views.html.stadium.create(formWithErrors))
