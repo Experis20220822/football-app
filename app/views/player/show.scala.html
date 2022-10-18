@@ -1,8 +1,11 @@
 @(player: Player)
 
 @main("View Player") {
-Player: @player.firstName @player.lastName
+<div>
+    <p>Player: @player.firstName @player.lastName</p>
 
-More Info:
-Team: @player.team
+    <p>More Info:</br>
+    Team: @player.team</p>
+</div>
+
 }
