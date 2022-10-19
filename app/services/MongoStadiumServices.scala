@@ -3,27 +3,14 @@ package services
 import models.Stadium
 import org.mongodb.scala.connection.ClusterSettings
 import org.mongodb.scala.model.Filters.equal
-import org.mongodb.scala.{Document, MongoClient, MongoClientSettings, MongoCredential, ServerAddress}
+import org.mongodb.scala.{Document, MongoClient, MongoClientSettings, MongoCredential, MongoDatabase, ServerAddress}
 
+import javax.inject.Inject
 import scala.concurrent.Future
 import scala.util.Try
 
-class MongoStadiumServices extends AsyncStadiumService {
-  val credential = MongoCredential.createCredential("mongo-root", "admin", "mongo-password".toCharArray)
+class MongoStadiumServices @Inject()(myCompanyDatabase: MongoDatabase) extends AsyncStadiumService {
 
-  import scala.jdk.CollectionConverters._
-  val mongoClient: MongoClient = MongoClient(
-    MongoClientSettings
-      .builder()
-      .applyToClusterSettings((builder: ClusterSettings.Builder) =>
-        builder
-          .hosts(List(new ServerAddress("localhost", 27019)).asJava)
-      )
-      .credential(credential)
-      .build()
-  )
-
-  val myCompanyDatabase = mongoClient.getDatabase("football_app")
   val stadiumCollection = myCompanyDatabase.getCollection("stadiums")
 
   override def create(stadium: Stadium): Unit = {
