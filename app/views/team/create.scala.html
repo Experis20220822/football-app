@@ -2,10 +2,13 @@
 @import views.html.helper.CSRF
 
 @main("Create Team") {
+  <div class="form-container">
   @helper.form(action = routes.TeamController.create()) {
     @CSRF.formField
-    @helper.inputText(teamForm("name"))
-    @helper.inputText(teamForm("stadium"))
-    <button type="submit" id="submit">Submit</button>
+    @helper.inputText(teamForm("name"), '_label -> "Name *", '_showConstraints -> false)
+    @helper.inputText(teamForm("stadium"), '_label -> "Stadium *", '_showConstraints -> false)
+    <p class="required-field-key">* required field</p>
+    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
   }
+  </div>
 }

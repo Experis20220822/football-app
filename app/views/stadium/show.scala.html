@@ -1,8 +1,11 @@
 @(stadium: Stadium)
 
 @main("View Stadium") {
-Stadium: @stadium.name
-
-More Info:
-City: @stadium.city
+<div>
+    <h1>Success! 🥳 You created a new stadium.</h1>
+    <p><strong>Stadium:</strong> @stadium.name</p>
+    <p><strong>City:</strong> @stadium.city</p>
+    <p><strong>Country:</strong> @stadium.country</p>
+    <p><strong>Seats:</strong> @stadium.seats</p>
+</div>
 }

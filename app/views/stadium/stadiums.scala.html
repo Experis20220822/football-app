@@ -3,9 +3,24 @@
 @main("Stadiums"){
 <h1>Welcome, there are @stadiums.size stadiums to look at!</h1>
 
-<ul>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+        <th scope="col">City</th>
+        <th scope="col">Country</th>
+        <th scope="col">Seats</th>
+    </tr>
+    </thead>
+    <tbody>
     @for(stadium <-stadiums) {
-    <li><a href="@routes.StadiumController.show(stadium.id)">@stadium.name</a></li>
+    <tr>
+        <td>@stadium.name</td>
+        <td>@stadium.city</td>
+        <td>@stadium.country</td>
+        <td>@stadium.seats</td>
+    </tr>
     }
-</ul>
+    </tbody>
+</table>
 }
