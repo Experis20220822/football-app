@@ -1,4 +1,4 @@
 # https://www.playframework.com/documentation/latest/ScalaI18N
 error.min = Too small ya dumb dumb
-error.max = Gear down there, big rig (number too big)
+error.max = Gear down there, big rig (the max value is 10,000)
 error.required = Fill me up

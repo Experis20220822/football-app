@@ -2,12 +2,13 @@
 @import views.html.helper.CSRF
 
 @main("Create Stadium") {
+    <p class="form-instructions">Enter a stadium:</p>
     @helper.form(action = routes.StadiumController.create()) {
         @CSRF.formField
-        @helper.inputText(stadiumForm("name"), Symbol("_label") -> "Name *", Symbol("_showConstraints") -> false)
-        @helper.inputText(stadiumForm("city"), Symbol("_label") -> "City *", Symbol("_showConstraints") -> false)
-        @helper.inputText(stadiumForm("country"), Symbol("_label") -> "Country *", Symbol("_showConstraints") -> false)
-        @helper.inputText(stadiumForm("seats"), Symbol("_label") -> "Seats *", Symbol("_showConstraints") -> false)
+        @helper.inputText(stadiumForm("name"), Symbol("_label") -> "Name *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field")
+        @helper.inputText(stadiumForm("city"), Symbol("_label") -> "City *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field")
+        @helper.inputText(stadiumForm("country"), Symbol("_label") -> "Country *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field")
+        @helper.inputText(stadiumForm("seats"), Symbol("_label") -> "Seats *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field")
         <p class="required-field-key">* required field</p>
         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
     }

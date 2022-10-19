@@ -3,8 +3,13 @@ body {
     background-color: coral;
 }
 
-.form-container {
-    margin-top: 2rem;
+.form-input-field dd {
+    color: red;
+}
+
+.form-instructions {
+    font-size: 2rem;
+    font-weight: 600;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -22,7 +27,7 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 0 6rem;
+    margin: 2rem 6rem;
 }
 
 .nav-container {
@@ -47,5 +52,5 @@ h1 {
 }
 
 .nav-link {
-    color: #000000; !important
+    color: #000000 !important;
 }

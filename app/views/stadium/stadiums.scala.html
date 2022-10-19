@@ -1,7 +1,11 @@
 @(stadiums: List[Stadium])
 
 @main("Stadiums"){
-<h1>Welcome, there are @stadiums.size stadiums to look at!</h1>
+@if(stadiums.size == 1) {
+    <h1>Welcome, there is @stadiums.size stadium to look at!</h1>
+} else {
+    <h1>Welcome, there are @stadiums.size stadiums to look at!</h1>
+}
 
 <table class="table">
     <thead>
