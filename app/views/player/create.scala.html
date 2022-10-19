@@ -5,10 +5,10 @@
     @helper.form(action = routes.
     PlayerController.create()) {
         @CSRF.formField
-        @helper.inputText(playerForm("firstName"), '_label -> "First Name", '_showConstraints -> false)
-        @helper.inputText(playerForm("lastName"), '_label -> "Last Name", '_showConstraints -> false)
-        @helper.inputText(playerForm("team"), '_label -> "Team", '_showConstraints -> false)
-        @helper.inputText(playerForm("position"), '_label -> "Position", '_showConstraints -> false)
+        @helper.inputText(playerForm("firstName"), Symbol("_label") -> "First Name", Symbol("_showConstraints") -> false)
+        @helper.inputText(playerForm("lastName"), Symbol("_label") -> "Last Name", Symbol("_showConstraints") -> false)
+        @helper.inputText(playerForm("team"), Symbol("_label") -> "Team", Symbol("_showConstraints") -> false)
+        @helper.inputText(playerForm("position"), Symbol("_label") -> "Position", Symbol("_showConstraints") -> false)
         <p class="required-field-key">* required field</p>
         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
     }

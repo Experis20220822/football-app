@@ -4,10 +4,10 @@
 @main("Create Stadium") {
     @helper.form(action = routes.StadiumController.create()) {
         @CSRF.formField
-        @helper.inputText(stadiumForm("name"), '_label -> "Name *", '_showConstraints -> false)
-        @helper.inputText(stadiumForm("city"), '_label -> "City *", '_showConstraints -> false)
-        @helper.inputText(stadiumForm("country"), '_label -> "Country *", '_showConstraints -> false)
-        @helper.inputText(stadiumForm("seats"), '_label -> "Seats *", '_showConstraints -> false)
+        @helper.inputText(stadiumForm("name"), Symbol("_label") -> "Name *", Symbol("_showConstraints") -> false)
+        @helper.inputText(stadiumForm("city"), Symbol("_label") -> "City *", Symbol("_showConstraints") -> false)
+        @helper.inputText(stadiumForm("country"), Symbol("_label") -> "Country *", Symbol("_showConstraints") -> false)
+        @helper.inputText(stadiumForm("seats"), Symbol("_label") -> "Seats *", Symbol("_showConstraints") -> false)
         <p class="required-field-key">* required field</p>
         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
     }

@@ -5,8 +5,8 @@
   <div class="form-container">
   @helper.form(action = routes.TeamController.create()) {
     @CSRF.formField
-    @helper.inputText(teamForm("name"), '_label -> "Name *", '_showConstraints -> false)
-    @helper.inputText(teamForm("stadium"), '_label -> "Stadium *", '_showConstraints -> false)
+    @helper.inputText(teamForm("name"), Symbol("_label") -> "Name *", Symbol("_showConstraints") -> false)
+    @helper.inputText(teamForm("stadium"), Symbol("_label") -> "Stadium *", Symbol("_showConstraints") -> false)
     <p class="required-field-key">* required field</p>
     <button type="submit" id="submit" class="btn btn-primary">Submit</button>
   }
