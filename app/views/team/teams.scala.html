@@ -3,9 +3,20 @@
 @main("Teams"){
 <h1>Welcome, there are @teams.size teams to look at!</h1>
 
-<ul>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Stadium</th>
+  </tr>
+  </thead>
+  <tbody>
   @for(team <- teams) {
-  <li>@team.name</li>
+  <tr>
+    <td>@team.name</td>
+    <td>@team.stadium.name</td>
+  </tr>
   }
-</ul>
+  </tbody>
+</table>
 }

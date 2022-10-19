@@ -3,27 +3,25 @@
 @main("Players"){
 <h1>Welcome, there are @players.size players to have a goosey at!</h1>
 
-<ul>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Position</th>
-            <th scope="col">Team</th>
-        </tr>
-        </thead>
-        <tbody>
-        @for(player <- players) {
-        <tr>
-            <td>@player.firstName</td>
-            <td>@player.lastName</td>
-            <td>@player.position</td>
-            <td>@player.team.name</td>
-        </tr>
-        }
-        </tbody>
-    </table>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Position</th>
+        <th scope="col">Team</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for(player <- players) {
+    <tr>
+        <td>@player.firstName</td>
+        <td>@player.lastName</td>
+        <td>@player.position</td>
+        <td>@player.team.name</td>
+    </tr>
+    }
+    </tbody>
+</table>
 
-</ul>
 }

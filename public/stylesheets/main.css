@@ -3,6 +3,10 @@ body {
     background-color: coral;
 }
 
+.form-container {
+    margin-top: 2rem;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Playfair Display";
   letter-spacing: 5px;
@@ -13,23 +17,35 @@ h1 {
     padding: 1em;
 }
 
+.main-content-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 6rem;
+}
+
 .nav-container {
     background: #FF875C;
 }
 
-.nav-link, dropdown {
-    color: white; !important
-}
-
-
 .navbar-brand {
-    color: #0056b3;
+    color: #000000;
 }
 
 .navbar-brand:hover {
-    color: #0076F5;
+    color: #003e80;
 }
 
-.img-wrap {
+.navbar-brand:active {
+    color: #0056b3;
+}
 
+.required-field-key {
+    font-size: 0.75rem;
+    color: #737373;
+}
+
+.nav-link {
+    color: #000000; !important
 }

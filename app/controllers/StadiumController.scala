@@ -28,7 +28,7 @@ class StadiumController @Inject() (
       "name" -> text.verifying(nonEmpty),
       "city" -> text.verifying(nonEmpty),
       "country" -> text.verifying(nonEmpty),
-      "seats" -> number.verifying(min(0), max(100))
+      "seats" -> number.verifying(min(0), max(10000))
     )(StadiumData.apply)
     (StadiumData.unapply)
   )
