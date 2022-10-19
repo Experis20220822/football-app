@@ -8,7 +8,22 @@ PlayerController.create()) {
 @helper.inputText(playerForm("firstName"))
 @helper.inputText(playerForm("lastName"))
 @helper.inputText(playerForm("team"))
-@helper.inputText(playerForm("position"))
+@helper.select(
+    field = playerForm("position"),
+    options = List(
+        "GoalKeeper" -> "GoalKeeper",
+        "RightFullback" -> "RightFullback",
+        "LeftFullback" -> "LeftFullback",
+        "CenterBack" -> "CenterBack",
+        "Sweeper" -> "Sweeper",
+        "Striker" -> "Striker",
+        "HoldingMidfielder" -> "HoldingMidfielder",
+        "RightMidfielder" -> "RightMidfielder",
+        "Central" -> "Central",
+        "AttackingMidfielder" -> "AttackingMidfielder",
+        "LeftMidfielder" -> "LeftMidfielder"
+    )
+)
 <button type="submit" id="submit">Submit</button>
 }
 }
