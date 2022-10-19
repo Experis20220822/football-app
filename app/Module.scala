@@ -1,7 +1,7 @@
 import com.google.inject.{AbstractModule, Provides}
 import org.mongodb.scala.{MongoClient, MongoDatabase}
 import play.api.Configuration
-import services.{AsyncStadiumService, MemoryPlayerService, MemoryStadiumService, MongoStadiumServices, PlayerService, StadiumService}
+import services._
 
 class Module extends AbstractModule{
   override def configure(): Unit = {
@@ -21,6 +21,9 @@ class Module extends AbstractModule{
 
     bind(classOf[StadiumService]).to(classOf[MemoryStadiumService]).in(classOf[javax.inject.Singleton])
     bind(classOf[PlayerService]).to(classOf[MemoryPlayerService]).in(classOf[javax.inject.Singleton])
+    bind(classOf[TeamService]).to(classOf[MemoryTeamService]).in(classOf[javax.inject.Singleton])
     bind(classOf[AsyncStadiumService]).to(classOf[MongoStadiumServices])
+    bind(classOf[AsyncPlayerService]).to(classOf[MongoPlayerServices])
+    bind(classOf[AsyncTeamService]).to(classOf[MongoTeamServices])
   }
 }

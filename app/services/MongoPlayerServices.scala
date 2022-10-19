@@ -1,31 +1,16 @@
 package services
 
 import models._
-import org.mongodb.scala.connection.ClusterSettings
 import org.mongodb.scala.model.Filters.equal
-import org.mongodb.scala.{Document, MongoClient, MongoClientSettings, MongoCredential, ServerAddress}
+import org.mongodb.scala.{Document, MongoDatabase}
 
+import javax.inject.Inject
 import scala.concurrent.Future
 import scala.util.Try
 
 
-class MongoPlayerServices extends AsyncPlayerService {
-  val credential = MongoCredential.createCredential("mongo-root", "admin", "mongo-password".toCharArray)
+class MongoPlayerServices @Inject()(myCompanyDatabase: MongoDatabase) extends AsyncPlayerService {
 
-  import scala.jdk.CollectionConverters._
-
-  val mongoClient: MongoClient = MongoClient(
-    MongoClientSettings
-      .builder()
-      .applyToClusterSettings((builder: ClusterSettings.Builder) =>
-        builder
-          .hosts(List(new ServerAddress("localhost", 27019)).asJava)
-      )
-      .credential(credential)
-      .build()
-  )
-
-  val myCompanyDatabase = mongoClient.getDatabase("football_app")
   val playerCollection = myCompanyDatabase.getCollection("players")
 
   override def create(player: Player): Unit = {
