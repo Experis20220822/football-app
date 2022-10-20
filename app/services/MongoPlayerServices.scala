@@ -38,7 +38,7 @@ class MongoPlayerServices @Inject()(myCompanyDatabase: MongoDatabase) extends As
   private def playerToDocument(player: Player): Document = {
     Document(
       "_id" -> player.id,
-      "team" -> player.team.name,
+      "team" -> player.teamId,
       "position" -> player.position.toString,
       "firstName" -> player.firstName,
       "lastName" -> player.lastName,
@@ -73,7 +73,7 @@ class MongoPlayerServices @Inject()(myCompanyDatabase: MongoDatabase) extends As
   private def documentToPlayer(d: Document) = {
     Player(
       d.getLong("_id"),
-      Team(10L, d.getString("team"), Stadium(20L, "A Stadium", "A City", "A Country", 100)),
+      d.getLong("teamId"),
       stringToPosition(d.getString("position")),
       d.getString("firstName"),
       d.getString("lastName"),

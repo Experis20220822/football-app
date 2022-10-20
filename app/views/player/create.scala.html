@@ -1,4 +1,4 @@
-@(playerForm: Form[PlayerData])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+@(playerForm: Form[PlayerData],teamList: List[Team])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
 @import views.html.helper.CSRF
 
 @main("Create Player") {
@@ -8,8 +8,26 @@
         @CSRF.formField
         @helper.inputText(playerForm("firstName"), Symbol("_label") -> "First Name *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field")
         @helper.inputText(playerForm("lastName"), Symbol("_label") -> "Last Name *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field")
-        @helper.inputText(playerForm("team"), Symbol("_label") -> "Team *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field")
-        @helper.inputText(playerForm("position"), Symbol("_label") -> "Position *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field")
+        @helper.select(
+            field = playerForm("team"),
+            options = teamList.map(t => t.id.toString -> t.name), Symbol("_label") -> "Team *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field"
+        )
+        @helper.select(
+            field = playerForm("position"),
+            options = List(
+                "GoalKeeper" -> "GoalKeeper",
+                "RightFullback" -> "RightFullback",
+                "LeftFullback" -> "LeftFullback",
+                "CenterBack" -> "CenterBack",
+                "Sweeper" -> "Sweeper",
+                "Striker" -> "Striker",
+                "HoldingMidfielder" -> "HoldingMidfielder",
+                "RightMidfielder" -> "RightMidfielder",
+                "Central" -> "Central",
+                "AttackingMidfielder" -> "AttackingMidfielder",
+                "LeftMidfielder" -> "LeftMidfielder"
+                ), Symbol("_label") -> "Position *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field"
+        )
         <p class="required-field-key">* required field</p>
         <button type="submit" id="submit" class="btn btn-primary">Submit</button>
     }
