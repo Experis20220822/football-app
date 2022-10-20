@@ -3,7 +3,6 @@ package services
 import models._
 import org.mongodb.scala.model.Filters.equal
 import org.mongodb.scala.{Document, MongoDatabase}
-
 import javax.inject.Inject
 import scala.concurrent.Future
 import scala.util.Try

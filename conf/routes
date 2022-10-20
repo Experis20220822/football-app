@@ -32,6 +32,7 @@ POST    /team                       controllers.TeamController.create()
 #  Players
 GET     /players                    controllers.PlayerController.list()
 
++ nocsrf
 GET     /player                     controllers.PlayerController.init()
 
 GET     /player/:id                 controllers.PlayerController.show(id:Long)
