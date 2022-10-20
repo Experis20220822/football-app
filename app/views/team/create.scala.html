@@ -2,7 +2,7 @@
 @import views.html.helper.CSRF
 
 @main("Create Team") {
-  <p class="form-instructions">Enter a stadium:</p>
+  <p class="form-instructions">Enter a team:</p>
   @helper.form(action = routes.TeamController.create()) {
     @CSRF.formField
     @helper.inputText(teamForm("name"), Symbol("_label") -> "Name *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field")

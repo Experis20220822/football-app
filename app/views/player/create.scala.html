@@ -2,7 +2,7 @@
 @import views.html.helper.CSRF
 
 @main("Create Player") {
-    <p class="form-instructions">Enter a stadium:</p>
+    <p class="form-instructions">Enter a player:</p>
     @helper.form(action = routes.
     PlayerController.create()) {
         @CSRF.formField
