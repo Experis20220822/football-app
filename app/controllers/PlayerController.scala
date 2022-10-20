@@ -2,7 +2,7 @@ package controllers
 
 import models._
 import play.api.mvc.{BaseController, ControllerComponents}
-import services.{MemoryPlayerService, PlayerService}
+import services.{AsyncPlayerService, MemoryPlayerService, PlayerService}
 import play.api._
 import play.api.data.Form
 import play.api.data.Forms.{mapping, text}
@@ -10,17 +10,18 @@ import play.api.data.validation.Constraints.nonEmpty
 import play.api.mvc._
 
 import javax.inject._
+import scala.concurrent.ExecutionContext.Implicits.global
 import scala.util.hashing.MurmurHash3
 
 case class PlayerData(team: String, position: String, firstName: String, lastName: String)
 
 class PlayerController @Inject() (
   val controllerComponents: ControllerComponents,
-  val playerService: PlayerService
+  val playerService: AsyncPlayerService
   ) extends BaseController with play.api.i18n.I18nSupport {
-  def list() = Action { implicit request =>
-    val result = playerService.findAll()
-    Ok(views.html.player.players(result))
+  def list() = Action.async { implicit request =>
+    playerService.findAll().map(p => Ok(views.html.player.players(p))
+    )
   }
 
   val playerForm = Form(
@@ -73,10 +74,12 @@ class PlayerController @Inject() (
 
   }
 
-  def show(id: Long) = Action { implicit request =>
+  def show(id: Long) = Action.async { implicit request =>
     val maybePlayers = playerService.findById(id)
     maybePlayers
-      .map(s => Ok(views.html.player.show(s)))
-      .getOrElse(NotFound("Sorry, that player is not found"))
+      .map {
+        case Some(player) => Ok(views.html.player.show(player))
+        case None => NotFound("Sorry, that player is not found")
+      }
   }
 }
