@@ -15,21 +15,21 @@ class PlayerControllerSpec extends PlaySpec with GuiceOneAppPerTest with Injecti
     "render the list of player in the /players page" in {
       val controller = new PlayerController(stubControllerComponents(), new MongoPlayerServices(getDb), new MongoTeamServices(getDb))
 
-      val stadiumsPage = controller.list().apply(FakeRequest(GET, "/players"))
+      val playersPage = controller.list().apply(FakeRequest(GET, "/players"))
 
-      status(stadiumsPage) mustBe OK
-      contentType(stadiumsPage) mustBe Some("text/html")
-      contentAsString(stadiumsPage) must include("to have a goosey at!")
+      status(playersPage) mustBe OK
+      contentType(playersPage) mustBe Some("text/html")
+      contentAsString(playersPage) must include("to have a goosey at!")
     }
 
     "render the form to add a player in the /player page" in {
       val controller = new PlayerController(stubControllerComponents(), new MongoPlayerServices(getDb), new MongoTeamServices(getDb))
       val request = CSRFTokenHelper.addCSRFToken(FakeRequest(GET, "/player"))
-      val stadiumFormPage = controller.init().apply(request)
+      val playerFormPage = controller.init().apply(request)
 
-      status(stadiumFormPage) mustBe OK
-      contentType(stadiumFormPage) mustBe Some("text/html")
-      contentAsString(stadiumFormPage) must include("Enter a player:")
+      status(playerFormPage) mustBe OK
+      contentType(playerFormPage) mustBe Some("text/html")
+      contentAsString(playerFormPage) must include("Enter a player:")
     }
   }
 
