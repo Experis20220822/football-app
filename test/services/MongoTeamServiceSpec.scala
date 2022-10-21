@@ -13,10 +13,10 @@ class MongoTeamServiceSpec extends PlaySpec with ForAllTestContainer {
   "Mongo Team Service" must {
     "create a team document" in {
       val teamService = new MongoTeamServices(getDb)
-      val team = Team(12L, "Charlton", Stadium(10L, "The Valley", "London", "UK", 27000))
+      val team = Team(20L, "Charlton", Stadium(10L, "The Valley", "London", "UK", 27000))
       teamService.create(team)
 
-      val result = teamService.findById(12L).map {
+      val result = teamService.findById(20L).map {
         case Some(s) => s
         case _ => ()
       }
@@ -25,18 +25,18 @@ class MongoTeamServiceSpec extends PlaySpec with ForAllTestContainer {
 
     "find a team by it's id" in {
       val teamService = new MongoTeamServices(getDb)
-      val team = Team(12L, "Charlton", Stadium(10L, "The Valley", "London", "UK", 27000))
+      val team = Team(22L, "West Bromwich Albion", Stadium(8L, "The Hawthorns", "Sandwell", "UK", 27000))
       teamService.create(team)
-      teamService.findById(12L).map(s => s mustEqual Document(
-        "_id" -> 12L,
-        "name" -> "Charlton",
-        "stadium" -> "Stadium(10L, The Valley, London, UK, 27000)"
+      teamService.findById(22L).map(s => s mustEqual Document(
+        "_id" -> 22L,
+        "name" -> "West Bromwich Albion",
+        "stadium" -> "Stadium(8L, The Hawthorns, Sandwell, UK, 27000)"
       ))
     }
 
     "list all teams" in {
       val teamService = new MongoTeamServices(getDb)
-      val team = Team(12L, "Charlton", Stadium(10L, "The Valley", "London", "UK", 27000))
+      val team = Team(24L, "Blackburn Rovers", Stadium(6L, "Ewood Park", "Blackburn", "UK", 26000))
       teamService.create(team)
       teamService.findAll().map(s => s.size mustEqual 1)
     }

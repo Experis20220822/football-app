@@ -25,12 +25,12 @@ class MongoStadiumServiceSpec extends PlaySpec with ForAllTestContainer {
 
     "find a stadium by it's id" in {
       val stadiumService = new MongoStadiumServices(getDb)
-      val stadium = Stadium(10L, "The Valley", "London", "UK", 27000)
+      val stadium = Stadium(8L, "The Hawthorns", "Sandwell", "UK", 27000)
       stadiumService.create(stadium)
-      stadiumService.findById(10L).map(s => s mustEqual Document(
-        "_id" -> 10L,
-        "name" -> "The Valley",
-        "city" -> "London",
+      stadiumService.findById(8L).map(s => s mustEqual Document(
+        "_id" -> 8L,
+        "name" -> "The Hawthorns",
+        "city" -> "Sandwell",
         "country" -> "UK",
         "seats" -> 27000
       ))
@@ -38,7 +38,7 @@ class MongoStadiumServiceSpec extends PlaySpec with ForAllTestContainer {
 
     "list all stadiums" in {
       val stadiumService = new MongoStadiumServices(getDb)
-      val stadium = Stadium(10L, "The Valley", "London", "UK", 27000)
+      val stadium = Stadium(6L, "Ewood Park", "Blackburn", "UK", 26000)
       stadiumService.create(stadium)
       stadiumService.findAll().map(s => s.size mustEqual 1)
     }
