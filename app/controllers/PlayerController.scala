@@ -3,7 +3,6 @@ package controllers
 import models._
 import play.api.mvc.{BaseController, ControllerComponents}
 import services.{AsyncPlayerService, AsyncTeamService, MemoryPlayerService, PlayerService}
-import play.api._
 import play.api.data.Form
 import play.api.data.Forms.{longNumber, mapping, text}
 import play.api.data.validation.Constraints.nonEmpty
