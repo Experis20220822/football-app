@@ -1,10 +1,12 @@
-@(teams: List[Team])
+@import services.TeamStadiumView
+
+@(teamStadiumViews: List[TeamStadiumView])
 
 @main("Teams"){
-@if(teams.size == 1) {
-  <h1>Welcome, there is @teams.size team to look at!</h1>
+@if(teamStadiumViews.size == 1) {
+  <h1>Welcome, there is @teamStadiumViews.size team to look at!</h1>
 } else {
-  <h1>Welcome, there are @teams.size teams to look at!</h1>
+  <h1>Welcome, there are @teamStadiumViews.size teams to look at!</h1>
 }
 
 <table class="table">
@@ -15,10 +17,10 @@
   </tr>
   </thead>
   <tbody>
-  @for(team <- teams) {
+  @for(teamView <- teamStadiumViews) {
   <tr>
-    <td>@team.name</td>
-    <td>@team.stadium.name</td>
+    <td><a href="@routes.TeamController.show(teamView.id)">@teamView.name</a></td>
+    <td>@teamView.stadiumName</td>
   </tr>
   }
   </tbody>

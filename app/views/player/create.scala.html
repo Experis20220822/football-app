@@ -1,4 +1,6 @@
-@(playerForm: Form[PlayerData],teamList: List[Team])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+@import services.TeamStadiumView
+
+@(playerForm: Form[PlayerData],teamList: List[TeamStadiumView])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
 @import views.html.helper.CSRF
 
 @main("Create Player") {

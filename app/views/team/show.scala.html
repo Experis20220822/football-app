@@ -1,9 +1,11 @@
-@(team: Team)
+@import services.TeamStadiumView
+
+@(teamStadiumView: TeamStadiumView)
 
 @main("View Team") {
 <div>
     <h1>Success! 🥳 You created a new team.</h1>
-    <p><strong>Team:</strong> @team.name</p>
-    <p><strong>Stadium:</strong> @team.stadium.name</p>
+    <p><strong>Team:</strong> @teamStadiumView.name</p>
+    <p><strong>Stadium:</strong> @teamStadiumView.stadiumName</p>
 </div>
 }

@@ -1,4 +1,4 @@
-@(teamForm: Form[TeamData])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
+@(teamForm: Form[TeamData], stadiumList: List[Stadium])(implicit request: RequestHeader, messagesProvider: MessagesProvider)
 @import views.html.helper.CSRF
 
 @main("Create Team") {
@@ -6,7 +6,7 @@
   @helper.form(action = routes.TeamController.create()) {
     @CSRF.formField
     @helper.inputText(teamForm("name"), Symbol("_label") -> "Name *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field")
-    @helper.inputText(teamForm("stadium"), Symbol("_label") -> "Stadium *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field")
+    @helper.select(teamForm("stadiumId"), options = stadiumList.map(t => t.id.toString -> t.name), Symbol("_label") -> "Stadium *", Symbol("_showConstraints") -> false, Symbol("_class") -> "form-input-field", Symbol("_default") -> "choose-one")
     <p class="required-field-key">* required field</p>
     <button type="submit" id="submit" class="btn btn-primary">Submit</button>
   }
